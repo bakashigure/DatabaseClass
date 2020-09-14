@@ -1,0 +1,2 @@
+T:\C++\DatabaseClass\Experiment_1\x64\Debug\Experiment_1.exe
+T:\C++\DatabaseClass\Experiment_1\x64\Debug\Experiment_1.pdb

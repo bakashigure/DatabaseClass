@@ -1,0 +1,4 @@
+﻿  rcc qml.qrc
+  main.cpp
+  qrc_qml.cpp
+  Experiment_1.vcxproj -> T:\C++\DatabaseClass\Experiment_1\x64\Debug\Experiment_1.exe
