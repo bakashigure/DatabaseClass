@@ -1,4 +1,5 @@
 #include "ex1.h"
+#include "fileMenu.h"
 #include <QtWidgets/QApplication>
 
 int main(int argc, char *argv[])
