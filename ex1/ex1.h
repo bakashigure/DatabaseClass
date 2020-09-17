@@ -9,6 +9,7 @@
 #include <sstream>
 #include <vector>
 #include <string>
+#include <qmessagebox.h>
 
 
 typedef struct

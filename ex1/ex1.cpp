@@ -1,4 +1,5 @@
 #include "ex1.h"
+#include <iomanip>
 
 
 
@@ -26,18 +27,16 @@ QString ex1::fileOpenAction()
 
 
 void ex1::readFile(QString* path)
-{	
+{
 	// START  选择文件菜单栏
 	std::string _path = path->toStdString();
 	std::ifstream fp(_path);
 	std::string line;
 	std::getline(fp, line);
 	std::istringstream readstr(line);
-	QString _text = QString::fromStdString(line);
 	// END
 
-	StuInfo stu;
-	table.push_back(stu);
+
 	std::string number;
 	for (int i = 0; i < 12; i++)
 	{
@@ -45,8 +44,73 @@ void ex1::readFile(QString* path)
 		lesson.push_back(number);
 	}
 
+	while (std::getline(fp, line))
+	{
+		StuInfo stu;
+		std::istringstream readstr(line);
+		for (int i = 0; i < 12; i++)
+		{
+			std::getline(readstr, number, ',');
+			if (i == 0)
+			{
+				stu.name = number;
+			}
+			else if (i == 1)
+			{
+				stu.classname = number;
+			}
+			else if (i == 2)
+			{
+				stu.uid = atoi(number.c_str());
+			}
+			else
+			{
+				stu.score.push_back(atoi(number.c_str()));
+				ui.output->setText(QString::fromStdString(number));
 
-	ui.output->setText(_text);
+
+
+			}
+		}		table.push_back(stu);
+	}
+
+
+	ui.output->clear();
+	for (auto it = lesson.begin(); it != lesson.end(); it++)
+	{
+		std::string _text = *it + " ";
+		ui.output->insertPlainText(QString::fromStdString(_text));
+		ui.output->moveCursor(QTextCursor::End);
+	}
+
+	ui.output->insertPlainText("\n");
+
+	for (auto it = table.begin(); it != table.end(); it++)
+	{
+		std::string _text = it->name + " " + it->classname + " " + std::to_string(it->uid);
+		std::stringstream ss;
+		ss << std::setw(8) << it->name << std::setw(5) << it->classname << it->uid;
+		/* 
+		for (auto it2 = it->score.begin(); it2 != it->score.end(); it2++)
+		{
+			ss << std::setw(5) << std::to_string(*it2);
+			//	_text = _text +" "+std::to_string(*it2) ;
+		}
+		// _text += "\n";
+		ss << std::endl;
+
+		*/
+		std::string _text2;
+		ss >> _text2;
+		QMessageBox box;
+		box.setText(QString::fromStdString(_text2));
+		box.exec();
+		ui.output->insertPlainText(QString::fromStdString(_text2));
+		ui.output->insertPlainText("\n");
+	}
+
+
+
 
 
 

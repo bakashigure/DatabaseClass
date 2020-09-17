@@ -51,7 +51,7 @@ public:
         title->setFont(font);
         output = new QTextEdit(centralWidget);
         output->setObjectName(QString::fromUtf8("output"));
-        output->setGeometry(QRect(0, 160, 701, 381));
+        output->setGeometry(QRect(10, 150, 701, 381));
         output->setFont(font);
         label_used_time = new QLabel(centralWidget);
         label_used_time->setObjectName(QString::fromUtf8("label_used_time"));
