@@ -90,11 +90,9 @@
     <QtUic Include="ex1.ui" />
     <QtMoc Include="ex1.h" />
     <ClCompile Include="ex1.cpp" />
-    <ClCompile Include="fileMenu.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <QtMoc Include="fileMenu.h" />
     <ClInclude Include="x64\Debug\uic\ui_ex1.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

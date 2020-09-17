@@ -1,7 +1,2 @@
-﻿  uic ex1.ui
-   T:\C++\DatabaseClass\ex1\ex1.ui: Warning: The name 'layoutWidget' (QWidget) is already in use, defaulting to 'layoutWidget1'.
-   T:\C++\DatabaseClass\ex1\ex1.ui: Warning: The name 'layoutWidget' (QWidget) is already in use, defaulting to 'layoutWidget2'.
-  ex1.cpp
-  main.cpp
-  moc_ex1.cpp
+﻿  ex1.cpp
   ex1.vcxproj -> T:\C++\DatabaseClass\ex1\x64\Debug\ex1.exe
