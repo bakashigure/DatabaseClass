@@ -26,24 +26,23 @@ QString ex1::fileOpenAction()
 
 
 void ex1::readFile(QString* path)
-{
-
+{	
+	// START  选择文件菜单栏
 	std::string _path = path->toStdString();
 	std::ifstream fp(_path);
 	std::string line;
 	std::getline(fp, line);
 	std::istringstream readstr(line);
 	QString _text = QString::fromStdString(line);
+	// END
+
 	StuInfo stu;
-	stu.classname = "homo";
-	stu.classname = "llr";
-	stu.uid = 114;
 	table.push_back(stu);
 	std::string number;
 	for (int i = 0; i < 12; i++)
 	{
 		std::getline(readstr, number, ',');
-		stu.score.push_back(atoi(number.c_str()));
+		lesson.push_back(number);
 	}
 
 

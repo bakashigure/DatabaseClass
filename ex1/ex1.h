@@ -28,6 +28,7 @@ public:
     ex1(QWidget *parent = Q_NULLPTR);
     void readFile(QString* path);
     std::vector<StuInfo> table;
+    std::vector<std::string> lesson;
 public slots:
     QString fileOpenAction();
 private:

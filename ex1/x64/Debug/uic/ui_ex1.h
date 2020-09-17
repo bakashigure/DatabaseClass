@@ -32,6 +32,7 @@ public:
     QPushButton *btn_search_single;
     QTextEdit *text_name_or_num;
     QPushButton *btn_search_all;
+    QPushButton *btn_file_2;
     QPushButton *btn_class;
     QTextEdit *text_class;
 
@@ -73,6 +74,9 @@ public:
         btn_search_all = new QPushButton(centralWidget);
         btn_search_all->setObjectName(QString::fromUtf8("btn_search_all"));
         btn_search_all->setGeometry(QRect(510, 94, 104, 23));
+        btn_file_2 = new QPushButton(centralWidget);
+        btn_file_2->setObjectName(QString::fromUtf8("btn_file_2"));
+        btn_file_2->setGeometry(QRect(10, 120, 75, 23));
         btn_class = new QPushButton(centralWidget);
         btn_class->setObjectName(QString::fromUtf8("btn_class"));
         btn_class->setGeometry(QRect(391, 54, 75, 23));
@@ -112,6 +116,7 @@ public:
 "<p align=\"center\" style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'SimSun'; font-size:8pt;\"><br /></p></body></html>", nullptr));
         text_name_or_num->setPlaceholderText(QCoreApplication::translate("ex1Class", "\345\247\223\345\220\215/\345\255\246\345\217\267", nullptr));
         btn_search_all->setText(QCoreApplication::translate("ex1Class", "\346\237\245\350\257\242\345\205\250\344\275\223\345\271\263\345\235\207\346\210\220\347\273\251", nullptr));
+        btn_file_2->setText(QCoreApplication::translate("ex1Class", "\350\257\273\345\217\226\346\226\207\344\273\266", nullptr));
         btn_class->setText(QCoreApplication::translate("ex1Class", "\351\200\211\346\213\251\347\217\255\347\272\247", nullptr));
         text_class->setHtml(QCoreApplication::translate("ex1Class", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"

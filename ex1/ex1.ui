@@ -39,8 +39,8 @@ p, li { white-space: pre-wrap; }
    <widget class="QTextEdit" name="output">
     <property name="geometry">
      <rect>
-      <x>0</x>
-      <y>160</y>
+      <x>10</x>
+      <y>150</y>
       <width>701</width>
       <height>381</height>
      </rect>
@@ -154,6 +154,19 @@ p, li { white-space: pre-wrap; }
     </property>
     <property name="text">
      <string>查询全体平均成绩</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btn_file_2">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>120</y>
+      <width>75</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>读取文件</string>
     </property>
    </widget>
    <widget class="QPushButton" name="btn_class">
