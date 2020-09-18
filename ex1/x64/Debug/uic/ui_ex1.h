@@ -35,27 +35,31 @@ public:
     QPushButton *btn_file_2;
     QPushButton *btn_class;
     QTextEdit *text_class;
+    QLabel *label_title;
 
     void setupUi(QMainWindow *ex1Class)
     {
         if (ex1Class->objectName().isEmpty())
             ex1Class->setObjectName(QString::fromUtf8("ex1Class"));
-        ex1Class->resize(694, 672);
+        ex1Class->resize(816, 733);
         centralWidget = new QWidget(ex1Class);
         centralWidget->setObjectName(QString::fromUtf8("centralWidget"));
         title = new QTextEdit(centralWidget);
         title->setObjectName(QString::fromUtf8("title"));
-        title->setGeometry(QRect(0, 0, 701, 41));
+        title->setGeometry(QRect(0, 0, 821, 41));
         QFont font;
         font.setFamily(QString::fromUtf8(".PingFang SC"));
         title->setFont(font);
         output = new QTextEdit(centralWidget);
         output->setObjectName(QString::fromUtf8("output"));
-        output->setGeometry(QRect(10, 150, 701, 381));
-        output->setFont(font);
+        output->setGeometry(QRect(10, 170, 801, 461));
+        QFont font1;
+        font1.setFamily(QString::fromUtf8("Consolas"));
+        font1.setPointSize(10);
+        output->setFont(font1);
         label_used_time = new QLabel(centralWidget);
         label_used_time->setObjectName(QString::fromUtf8("label_used_time"));
-        label_used_time->setGeometry(QRect(590, 540, 111, 16));
+        label_used_time->setGeometry(QRect(590, 630, 111, 16));
         label_filename = new QLabel(centralWidget);
         label_filename->setObjectName(QString::fromUtf8("label_filename"));
         label_filename->setGeometry(QRect(99, 61, 281, 28));
@@ -83,10 +87,14 @@ public:
         text_class = new QTextEdit(centralWidget);
         text_class->setObjectName(QString::fromUtf8("text_class"));
         text_class->setGeometry(QRect(480, 51, 141, 29));
+        label_title = new QLabel(centralWidget);
+        label_title->setObjectName(QString::fromUtf8("label_title"));
+        label_title->setGeometry(QRect(20, 150, 781, 16));
         ex1Class->setCentralWidget(centralWidget);
 
         retranslateUi(ex1Class);
         QObject::connect(btn_file, SIGNAL(clicked()), ex1Class, SLOT(fileOpenAction()));
+        QObject::connect(btn_search_single, SIGNAL(clicked()), ex1Class, SLOT(averageScoreSingle()));
 
         QMetaObject::connectSlotsByName(ex1Class);
     } // setupUi
@@ -102,8 +110,8 @@ public:
         output->setHtml(QCoreApplication::translate("ex1Class", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'.PingFang SC'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'.PingFang SC';\">\350\276\223\345\207\272</span></p></body></html>", nullptr));
+"</style></head><body style=\" font-family:'Consolas'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'.Consolas';\">\350\276\223\345\207\272</span></p></body></html>", nullptr));
         label_used_time->setText(QCoreApplication::translate("ex1Class", "\350\200\227\346\227\266114514MS", nullptr));
         label_filename->setText(QCoreApplication::translate("ex1Class", "<html><head/><body><p><br/></p></body></html>", nullptr));
         btn_file->setText(QCoreApplication::translate("ex1Class", "\351\200\211\346\213\251\346\226\207\344\273\266", nullptr));
@@ -124,6 +132,7 @@ public:
 "</style></head><body style=\" font-family:'SimSun'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
 "<p align=\"center\" style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'SimSun'; font-size:8pt;\"><br /></p></body></html>", nullptr));
         text_class->setPlaceholderText(QCoreApplication::translate("ex1Class", "\347\217\255\347\272\247", nullptr));
+        label_title->setText(QCoreApplication::translate("ex1Class", "<html><head/><body><p><br/></p></body></html>", nullptr));
     } // retranslateUi
 
 };

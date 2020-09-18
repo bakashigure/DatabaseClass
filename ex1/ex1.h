@@ -9,6 +9,7 @@
 #include <sstream>
 #include <vector>
 #include <string>
+#include <QTextEdit>
 #include <qmessagebox.h>
 
 
@@ -28,10 +29,12 @@ class ex1 : public QMainWindow
 public:
     ex1(QWidget *parent = Q_NULLPTR);
     void readFile(QString* path);
+
     std::vector<StuInfo> table;
     std::vector<std::string> lesson;
 public slots:
     QString fileOpenAction();
+    void averageScoreSingle();
 private:
     Ui::ex1Class ui;
 };
