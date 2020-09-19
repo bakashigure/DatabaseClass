@@ -28,13 +28,17 @@ class ex1 : public QMainWindow
 
 public:
     ex1(QWidget *parent = Q_NULLPTR);
-    void readFile(QString* path);
 
+    bool isNum(std::string* str);
+    void replaceOutput();
     std::vector<StuInfo> table;
     std::vector<std::string> lesson;
+    std::string file_path;
 public slots:
+    void readFile();
     QString fileOpenAction();
     void averageScoreSingle();
+    void averageScoreAll();
 private:
     Ui::ex1Class ui;
 };

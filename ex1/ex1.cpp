@@ -1,14 +1,13 @@
 #include "ex1.h"
 #include <iomanip>
 
-
-
+#pragma execution_character_set("UTF-8")
 
 ex1::ex1(QWidget* parent)
 	: QMainWindow(parent)
 {
 	ui.setupUi(this);
-	setWindowTitle(QString::fromLocal8Bit("卢本伟牛逼"));
+	setWindowTitle(QString::fromStdString("卢本伟牛逼"));
 }
 
 QString ex1::fileOpenAction()
@@ -20,19 +19,22 @@ QString ex1::fileOpenAction()
 	dlg.setNameFilter(_name_filter);
 	dlg.exec();
 	QStringList files = dlg.selectedFiles();
-	ui.label_filename->setText(files[0]);
+	if (!files.isEmpty())
+	{
+		ui.label_filename->setText(files[0]);
+		file_path = files[0].toStdString();
+	}
 
-	readFile(&files[0]);
-
+	readFile();
 	return files[0];
 }
 
 
-void ex1::readFile(QString* path)
+void ex1::readFile()
 {
+	ui.output->clear();
 	// START  选择文件菜单栏
-	std::string _path = path->toStdString();
-	std::ifstream fp(_path);
+	std::ifstream fp(file_path);
 	std::string line;
 	std::getline(fp, line);
 	std::istringstream readstr(line);
@@ -40,11 +42,12 @@ void ex1::readFile(QString* path)
 
 
 	std::string number;
-	for (int i = 0; i < 15; i++)
-	{
-		std::getline(readstr, number, ',');
-		lesson.push_back(number);
-	}
+	if (lesson.size() == 0)
+		for (int i = 0; i < 15; i++)
+		{
+			std::getline(readstr, number, ',');
+			lesson.push_back(number);
+		}
 
 	while (std::getline(fp, line))
 	{
@@ -68,10 +71,6 @@ void ex1::readFile(QString* path)
 			else
 			{
 				stu.score.push_back(atoi(number.c_str()));
-				ui.output->setText(QString::fromStdString(number));
-
-
-
 			}
 		}		table.push_back(stu);
 	}
@@ -80,7 +79,7 @@ void ex1::readFile(QString* path)
 	ui.output->clear();
 	auto it = lesson.begin();
 	std::stringstream ts; //title string stream 姓名班级以及课程名的字符流
-	ts << "x" <<std::left << std::setw(14) << std::setfill('x') << *it;
+	ts << "x" << std::left << std::setw(14) << std::setfill('x') << *it;
 	it++;
 	ts << std::left << std::setw(10) << std::setfill('x') << *it;
 	it++;
@@ -105,38 +104,121 @@ void ex1::readFile(QString* path)
 		std::stringstream ss;
 		ss << std::left << std::setw(12) << std::setfill('x') << it->name << std::setw(8) << std::setfill('x') <<
 			it->classname << std::setw(8) << std::setfill('x') << it->uid;
-
-
 		for (auto it2 = it->score.begin(); it2 != it->score.end(); it2++)
 		{
 			ss << std::setw(6) << std::right << std::setfill('x') << std::to_string(*it2);
-			//	_text = _text +" "+std::to_string(*it2) ;
 		}
-		// _text += "\n";
 		ss << std::endl;
-
-
 		std::string _text2;
 		ss >> _text2;
-		/*
-		QMessageBox box;
-		box.setText(QString::fromStdString(_text2));
-		box.exec();
-		*/
 		ui.output->insertPlainText(QString::fromStdString(_text2));
 		ui.output->insertPlainText("\n");
+	}
+	replaceOutput();
+}
 
+void ex1::averageScoreSingle()
+{
 
+	QString name_or_id = ui.text_name_or_num->toPlainText();
+	std::string _content = name_or_id.toStdString();
+	bool flag_num = isNum(&_content);
+	bool flag_isFind = false;
+	std::string test;
 
+	int cnt = 0;
+	int score_all = 0;
+	std::stringstream ss;
+
+	auto it = lesson.begin();
+	std::stringstream ts; //title string stream 姓名班级以及课程名的字符流
+	ts << "x" << std::left << std::setw(14) << std::setfill('x') << *it;
+	it++;
+	ts << std::left << std::setw(10) << std::setfill('x') << *it;
+	it++;
+	ts << std::left << std::setw(14) << std::setfill('x') << *it;
+	it++;
+	std::string ave_score_zh = "均分";
+	ts << std::left << std::setw(14) << std::setfill('x') << ave_score_zh;
+	ts << std::endl;
+
+	for (auto it = table.begin(); it != table.end(); it++)
+	{
+		if (flag_num)
+		{
+
+			if (std::to_string(it->uid) == _content)
+			{
+				ss << std::left << std::setw(12) << std::setfill('x') << it->name << std::setw(8) << std::setfill('x') <<
+					it->classname << std::setw(8) << std::setfill('x') << it->uid;
+				flag_isFind = !flag_isFind;
+				for (auto it_score = it->score.begin(); it_score != it->score.end(); it_score++)
+					if (*it_score != 0)
+					{
+						score_all += *it_score;
+						cnt++;
+					}
+				break;
+			}
+		}
+		else
+		{
+			if (it->name == _content)
+			{
+				ss << std::left << std::setw(12) << std::setfill('x') << it->name << std::setw(8) << std::setfill('x') <<
+					it->classname << std::setw(8) << std::setfill('x') << it->uid;
+				flag_isFind = !flag_isFind;
+				for (auto it_score = it->score.begin(); it_score != it->score.end(); it_score++)
+					if (*it_score != 0)
+					{
+						score_all += *it_score;
+						cnt++;
+					}
+				break;
+			}
+
+		}
 	}
 
-	QTextCursor search;
+	ui.output->clear();
+	if (flag_isFind)
+	{
+
+		double ave_score = double(score_all) / double(cnt);
+		ss << std::right << std::setw(10) << std::setfill('x') << ave_score;
+		std::string _text;
+		ss >> _text;
+
+		std::string _text2;
+		ts >> _text2;
+		ui.output->setText(QString::fromStdString(_text2));
+		ui.output->append(QString::fromStdString(_text));
+
+		replaceOutput();
+
+	}
+	else
+		ui.output->setText("未找到该生，请重试");
+
+	//ui.output->clear();
+
+}
+
+void ex1::averageScoreAll()
+{
+
+	ui.output->clear();
+	ui.output->setText("114514");
+	QApplication::processEvents();
+}
+
+void ex1::replaceOutput()
+{
 	QTextDocument* doc = ui.output->document();
 	QString search_text = "x";
 	QTextCursor searchCursor(doc);
 	QTextCursor cursor1(doc);
 	cursor1.beginEditBlock();
-
 	searchCursor = doc->find(search_text, searchCursor);
 	while (!searchCursor.isNull() && !searchCursor.atEnd())
 	{
@@ -144,12 +226,18 @@ void ex1::readFile(QString* path)
 		searchCursor.insertText(" ");
 		searchCursor = doc->find(search_text, searchCursor);
 	}
+	cursor1.endEditBlock();
+	cursor1.movePosition(QTextCursor::Start);
+	ui.output->setTextCursor(cursor1);
 }
 
-void ex1::averageScoreSingle()
+bool ex1::isNum(std::string* str)
 {
-	
-	QString name_or_id = ui.text_name_or_num->toPlainText();
-	std::string _content = name_or_id.toStdString();
-	ui.output->setText(name_or_id);
+	std::stringstream sin(*str);
+	double t;
+	if (!(sin >> t))
+		return false;
+	else
+		return true;
+
 }
