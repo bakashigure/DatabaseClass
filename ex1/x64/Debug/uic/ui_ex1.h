@@ -32,14 +32,12 @@ public:
     QTextEdit *text_name_or_num;
     QPushButton *btn_search_all;
     QPushButton *btn_file_2;
-    QPushButton *btn_class;
-    QTextEdit *text_class;
 
     void setupUi(QMainWindow *ex1Class)
     {
         if (ex1Class->objectName().isEmpty())
             ex1Class->setObjectName(QString::fromUtf8("ex1Class"));
-        ex1Class->resize(816, 733);
+        ex1Class->resize(775, 733);
         centralWidget = new QWidget(ex1Class);
         centralWidget->setObjectName(QString::fromUtf8("centralWidget"));
         title = new QTextEdit(centralWidget);
@@ -50,7 +48,7 @@ public:
         title->setFont(font);
         output = new QTextEdit(centralWidget);
         output->setObjectName(QString::fromUtf8("output"));
-        output->setGeometry(QRect(10, 150, 801, 481));
+        output->setGeometry(QRect(10, 150, 761, 481));
         QFont font1;
         font1.setFamily(QString::fromUtf8("Consolas"));
         font1.setPointSize(10);
@@ -59,31 +57,25 @@ public:
         output->setPlaceholderText(QString::fromUtf8(""));
         label_used_time = new QLabel(centralWidget);
         label_used_time->setObjectName(QString::fromUtf8("label_used_time"));
-        label_used_time->setGeometry(QRect(590, 630, 111, 16));
+        label_used_time->setGeometry(QRect(590, 630, 181, 16));
         label_filename = new QLabel(centralWidget);
         label_filename->setObjectName(QString::fromUtf8("label_filename"));
-        label_filename->setGeometry(QRect(99, 61, 281, 28));
+        label_filename->setGeometry(QRect(99, 60, 281, 28));
         btn_file = new QPushButton(centralWidget);
         btn_file->setObjectName(QString::fromUtf8("btn_file"));
         btn_file->setGeometry(QRect(20, 49, 75, 31));
         btn_search_single = new QPushButton(centralWidget);
         btn_search_single->setObjectName(QString::fromUtf8("btn_search_single"));
-        btn_search_single->setGeometry(QRect(391, 98, 104, 31));
+        btn_search_single->setGeometry(QRect(391, 80, 104, 41));
         text_name_or_num = new QTextEdit(centralWidget);
         text_name_or_num->setObjectName(QString::fromUtf8("text_name_or_num"));
         text_name_or_num->setGeometry(QRect(102, 91, 256, 29));
         btn_search_all = new QPushButton(centralWidget);
         btn_search_all->setObjectName(QString::fromUtf8("btn_search_all"));
-        btn_search_all->setGeometry(QRect(501, 98, 104, 31));
+        btn_search_all->setGeometry(QRect(530, 80, 104, 41));
         btn_file_2 = new QPushButton(centralWidget);
         btn_file_2->setObjectName(QString::fromUtf8("btn_file_2"));
         btn_file_2->setGeometry(QRect(21, 91, 75, 31));
-        btn_class = new QPushButton(centralWidget);
-        btn_class->setObjectName(QString::fromUtf8("btn_class"));
-        btn_class->setGeometry(QRect(391, 52, 101, 31));
-        text_class = new QTextEdit(centralWidget);
-        text_class->setObjectName(QString::fromUtf8("text_class"));
-        text_class->setGeometry(QRect(501, 52, 121, 31));
         ex1Class->setCentralWidget(centralWidget);
 
         retranslateUi(ex1Class);
@@ -120,13 +112,6 @@ public:
         text_name_or_num->setPlaceholderText(QCoreApplication::translate("ex1Class", "\345\247\223\345\220\215/\345\255\246\345\217\267", nullptr));
         btn_search_all->setText(QCoreApplication::translate("ex1Class", "\346\237\245\350\257\242\345\205\250\344\275\223\345\271\263\345\235\207\346\210\220\347\273\251", nullptr));
         btn_file_2->setText(QCoreApplication::translate("ex1Class", "\350\257\273\345\217\226\346\226\207\344\273\266", nullptr));
-        btn_class->setText(QCoreApplication::translate("ex1Class", "\351\200\211\346\213\251\347\217\255\347\272\247", nullptr));
-        text_class->setHtml(QCoreApplication::translate("ex1Class", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'SimSun'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'SimSun'; font-size:8pt;\"><br /></p></body></html>", nullptr));
-        text_class->setPlaceholderText(QCoreApplication::translate("ex1Class", "\347\217\255\347\272\247", nullptr));
     } // retranslateUi
 
 };

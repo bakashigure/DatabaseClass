@@ -66,7 +66,7 @@ static const uint qt_meta_data_ex1[] = {
 
  // slots: parameters
     QMetaType::Void,
-    QMetaType::QString,
+    QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
 
@@ -80,13 +80,13 @@ void ex1::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **
         Q_UNUSED(_t)
         switch (_id) {
         case 0: _t->readFile(); break;
-        case 1: { QString _r = _t->fileOpenAction();
-            if (_a[0]) *reinterpret_cast< QString*>(_a[0]) = std::move(_r); }  break;
+        case 1: _t->fileOpenAction(); break;
         case 2: _t->averageScoreSingle(); break;
         case 3: _t->averageScoreAll(); break;
         default: ;
         }
     }
+    Q_UNUSED(_a);
 }
 
 QT_INIT_METAOBJECT const QMetaObject ex1::staticMetaObject = { {

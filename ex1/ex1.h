@@ -1,6 +1,6 @@
 #pragma once
 
-
+#include <iomanip>
 #include <QtWidgets/QMainWindow>
 #include <qfiledialog.h>
 #include "ui_ex1.h"
@@ -11,6 +11,7 @@
 #include <string>
 #include <QTextEdit>
 #include <qmessagebox.h>
+#include <ctime>
 
 
 typedef struct
@@ -31,12 +32,15 @@ public:
 
     bool isNum(std::string* str);
     void replaceOutput();
+
     std::vector<StuInfo> table;
     std::vector<std::string> lesson;
     std::string file_path;
+    
+    clock_t start_time, end_time;
 public slots:
     void readFile();
-    QString fileOpenAction();
+    void fileOpenAction();
     void averageScoreSingle();
     void averageScoreAll();
 private:
